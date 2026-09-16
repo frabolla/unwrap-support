@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistenza Unwrap</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6e6e73;
+    --accent: #0a5cff;
+    --border: #e5e5ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1e;
+      --fg: #f5f5f7;
+      --muted: #a1a1a6;
+      --accent: #4d9fff;
+      --border: #3a3a3c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 20px 80px;
+  }
+  .icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: block;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 32px;
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 40px 0 12px;
+  }
+  p {
+    margin: 0 0 12px;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 12px;
+  }
+  .card + .card { margin-top: 12px; }
+  .card strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  ul {
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+  li { margin-bottom: 6px; }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .lang-toggle {
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 6px;
+  }
+  .lang-toggle button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  [data-lang="en"] { display: none; }
+  body.lang-en [data-lang="it"] { display: none; }
+  body.lang-en [data-lang="en"] { display: block; }
+  body.lang-en .lang-toggle span[data-lang="en"] { display: inline; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang-toggle">
+    <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
+    <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+
+  <div data-lang="it">
+    <h1>Assistenza Unwrap</h1>
+    <p class="subtitle">App per macOS che apre i file .p7m (buste firmate CAdES/PKCS#7).</p>
+
+    <div class="card">
+      <strong>Hai un problema o una domanda?</strong>
+      <p>Scrivimi direttamente, rispondo io: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Assistenza">francesco.tarini@gmail.com</a></p>
+    </div>
+
+    <h2>Domande frequenti</h2>
+    <ul>
+      <li><strong>Cos'è un file .p7m?</strong> È un documento (PDF, fattura elettronica, XML, immagine...) racchiuso in una "busta" firmata digitalmente secondo lo standard CAdES/PKCS#7, usato in Italia per fatture elettroniche, PEC e comunicazioni con la Pubblica Amministrazione. Unwrap apre la busta e mostra subito il contenuto.</li>
+      <li><strong>Requisiti</strong>: macOS 27 "Golden Gate" o successivo, Mac con Apple Silicon.</li>
+      <li><strong>I miei file lasciano il Mac?</strong> No: l'estrazione e la lettura avvengono interamente in locale. La rete è usata solo per il foglio di stile delle fatture elettroniche, la verifica facoltativa della firma (OCSP/CRL) e il link "Dona".</li>
+      <li><strong>Cos'è il banner donazioni?</strong> Un invito occasionale, disattivabile nelle Impostazioni, a sostenere volontariamente lo sviluppo tramite un link PayPal esterno. Non sblocca nessuna funzionalità.</li>
+    </ul>
+
+    <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini.</footer>
+  </div>
+
+  <div data-lang="en">
+    <h1>Unwrap Support</h1>
+    <p class="subtitle">A macOS app that opens .p7m files (signed CAdES/PKCS#7 envelopes).</p>
+
+    <div class="card">
+      <strong>Got an issue or a question?</strong>
+      <p>Write to me directly, I answer personally: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Support">francesco.tarini@gmail.com</a></p>
+    </div>
+
+    <h2>FAQ</h2>
+    <ul>
+      <li><strong>What is a .p7m file?</strong> It's a document (PDF, e-invoice, XML, image...) wrapped in a digitally signed "envelope" following the CAdES/PKCS#7 standard, widely used in Italy for electronic invoices, certified email (PEC) and communications with public administration. Unwrap opens the envelope and shows the content right away.</li>
+      <li><strong>Requirements</strong>: macOS 27 "Golden Gate" or later, Apple Silicon Mac.</li>
+      <li><strong>Does my data leave the Mac?</strong> No: extraction and reading happen entirely on-device. Network access is only used for the invoice stylesheet, the optional signature check (OCSP/CRL), and the "Donate" link.</li>
+      <li><strong>What is the donation banner?</strong> An occasional, dismissible prompt (can be turned off in Settings) to voluntarily support development via an external PayPal link. It never unlocks any feature.</li>
+    </ul>
+
+    <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
+  </div>
+</main>
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('unwrap-support-lang', lang); } catch (e) {}
+  }
+  try {
+    var saved = localStorage.getItem('unwrap-support-lang');
+    if (saved === 'en') setLang('en');
+  } catch (e) {}
+</script>
+</body>
+</html>
