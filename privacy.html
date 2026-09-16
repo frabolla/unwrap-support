@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Unwrap</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6e6e73;
+    --accent: #0a5cff;
+    --border: #e5e5ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1e;
+      --fg: #f5f5f7;
+      --muted: #a1a1a6;
+      --accent: #4d9fff;
+      --border: #3a3a3c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 20px 80px;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 32px;
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 36px 0 12px;
+  }
+  p {
+    margin: 0 0 12px;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  ul {
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+  li { margin-bottom: 6px; }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .lang-toggle {
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 6px;
+  }
+  .lang-toggle button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .nav {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  [data-lang="en"] { display: none; }
+  body.lang-en [data-lang="it"] { display: none; }
+  body.lang-en [data-lang="en"] { display: block; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang-toggle">
+    <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
+    <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+
+  <div data-lang="it">
+    <p class="nav"><a href="index.html">&larr; Assistenza Unwrap</a></p>
+    <h1>Privacy Policy — Unwrap</h1>
+    <p class="subtitle">Ultimo aggiornamento: settembre 2026</p>
+
+    <p>Unwrap è un'app per macOS che apre file <code>.p7m</code> (buste
+    firmate CAdES/PKCS#7) e ne mostra il contenuto. Questa pagina descrive
+    quali dati l'app tratta e come.</p>
+
+    <h2>Nessuna raccolta dati</h2>
+    <p>Unwrap <strong>non raccoglie, non trasmette e non vende</strong>
+    alcun dato personale. Non ci sono account, non c'è analytics, non c'è
+    tracciamento pubblicitario, non ci sono SDK di terze parti per la
+    raccolta dati. L'app non sa chi sei e non ha modo di identificarti.</p>
+
+    <h2>Elaborazione dei file</h2>
+    <p>L'apertura e l'estrazione dei file <code>.p7m</code> avvengono
+    <strong>interamente sul tuo Mac</strong>, usando solo il framework di
+    sistema <code>Security</code> di Apple. I file che apri non lasciano mai
+    il dispositivo. Il contenuto estratto resta in memoria e viene scritto
+    su disco solo quando scegli tu di salvarlo, esportarlo o aprirlo con
+    un'altra app.</p>
+
+    <h2>Quando l'app usa la rete</h2>
+    <p>Unwrap richiede l'autorizzazione di rete solo per queste funzioni,
+    tutte facoltative o innescate da un'azione esplicita:</p>
+    <ul>
+      <li><strong>Fatture elettroniche</strong>: al primo utilizzo scarica
+      una volta sola il foglio di stile pubblico da
+      <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
+      per impaginare la fattura, e lo conserva in cache sul Mac. Non viene
+      inviato alcun dato del file, solo la richiesta di scaricare il
+      foglio di stile.</li>
+      <li><strong>Verifica firma…</strong> (funzione a richiesta): interroga
+      i servizi OCSP/CRL degli enti certificatori e le Trusted List eIDAS
+      per controllare la validità del certificato di firma del documento.
+      Queste richieste riguardano il certificato del documento, non la tua
+      identità.</li>
+      <li><strong>Link "Dona"</strong>: apre il browser di sistema su una
+      pagina PayPal esterna, gestita da PayPal, non da Unwrap.</li>
+    </ul>
+    <p>Se non usi queste funzioni, l'app non effettua alcuna richiesta di
+    rete. L'estensione Quick Look (anteprima nel Finder) non ha accesso
+    alla rete.</p>
+
+    <h2>Permessi del sistema</h2>
+    <p>Unwrap gira in <strong>App Sandbox</strong> e accede solo ai file
+    che apri esplicitamente (doppio clic, drag & drop, "Apri con" o
+    selezione da finestra di dialogo). Non ha accesso generico al disco,
+    non legge altri file o cartelle.</p>
+
+    <h2>Minori</h2>
+    <p>Unwrap non è rivolta specificamente ai minori e non raccoglie
+    consapevolmente dati di minori, in quanto non raccoglie dati da
+    nessun utente.</p>
+
+    <h2>Modifiche a questa policy</h2>
+    <p>Eventuali aggiornamenti verranno pubblicati su questa stessa
+    pagina, con la data di ultimo aggiornamento in cima.</p>
+
+    <h2>Contatti</h2>
+    <p>Per domande su questa privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
+
+    <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini.</footer>
+  </div>
+
+  <div data-lang="en">
+    <p class="nav"><a href="index.html">&larr; Unwrap Support</a></p>
+    <h1>Privacy Policy — Unwrap</h1>
+    <p class="subtitle">Last updated: September 2026</p>
+
+    <p>Unwrap is a macOS app that opens <code>.p7m</code> files (signed
+    CAdES/PKCS#7 envelopes) and shows their content. This page describes
+    what data the app processes and how.</p>
+
+    <h2>No data collection</h2>
+    <p>Unwrap does <strong>not collect, transmit, or sell</strong> any
+    personal data. There are no accounts, no analytics, no advertising
+    tracking, and no third-party data-collection SDKs. The app has no way
+    to identify you.</p>
+
+    <h2>File processing</h2>
+    <p>Opening and extracting <code>.p7m</code> files happens
+    <strong>entirely on your Mac</strong>, using only Apple's system
+    <code>Security</code> framework. Files you open never leave the
+    device. Extracted content stays in memory and is only written to disk
+    when you choose to save, export, or open it with another app.</p>
+
+    <h2>When the app uses the network</h2>
+    <p>Unwrap requests network access only for these features, all
+    optional or triggered by an explicit action:</p>
+    <ul>
+      <li><strong>Electronic invoices</strong>: on first use, it downloads
+      the public stylesheet once from
+      <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
+      to render the invoice, and caches it locally. No file data is sent,
+      only the request to download the stylesheet.</li>
+      <li><strong>Verify signature…</strong> (on-demand feature): queries
+      certificate authorities' OCSP/CRL services and the eIDAS Trusted
+      Lists to check the validity of the document's signing certificate.
+      These requests concern the document's certificate, not your
+      identity.</li>
+      <li><strong>"Donate" link</strong>: opens the system browser to an
+      external PayPal page, handled by PayPal, not by Unwrap.</li>
+    </ul>
+    <p>If you don't use these features, the app makes no network
+    requests at all. The Quick Look extension (Finder preview) has no
+    network access.</p>
+
+    <h2>System permissions</h2>
+    <p>Unwrap runs in an <strong>App Sandbox</strong> and only accesses
+    files you explicitly open (double-click, drag & drop, "Open With", or
+    a file picker). It has no generic disk access and does not read other
+    files or folders.</p>
+
+    <h2>Children</h2>
+    <p>Unwrap is not directed at children and does not knowingly collect
+    data from children, as it does not collect data from any user.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>Any updates will be posted on this same page, with the "last
+    updated" date at the top.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
+
+    <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
+  </div>
+</main>
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('unwrap-support-lang', lang); } catch (e) {}
+  }
+  try {
+    var saved = localStorage.getItem('unwrap-support-lang');
+    if (saved === 'en') setLang('en');
+  } catch (e) {}
+</script>
+</body>
+</html>
