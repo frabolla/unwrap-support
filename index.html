@@ -44,6 +44,14 @@
     display: block;
     margin-bottom: 20px;
   }
+  .screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 24px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
   h1 {
     font-size: 28px;
     margin: 0 0 4px;
@@ -127,7 +135,12 @@
     <p>Con un doppio clic mostra subito il contenuto: PDF, fattura elettronica
     impaginata, XML con sintassi colorata, testo o immagine — senza il
     solito giro verifica → estrazione → apertura con altri strumenti.
-    Tutto elaborato in locale sul Mac, nessun file lascia il dispositivo.</p>
+    Tutto elaborato in locale sul Mac, nessun file lascia il dispositivo.
+    Si integra anche con il Finder: basta selezionare un <code>.p7m</code> e
+    premere la barra spaziatrice per vederne l'anteprima con Quick Look,
+    senza nemmeno aprire l'app.</p>
+
+    <img class="screenshot" src="screenshot.png" alt="Finestra di Unwrap con l'area per trascinare un file .p7m o una fattura .xml">
 
     <div class="card">
       <strong>Hai un problema o una domanda?</strong>
@@ -152,7 +165,11 @@
     <p>One double-click shows the content right away: PDF, a nicely formatted
     e-invoice, syntax-highlighted XML, text or an image — instead of the
     usual verify → extract → open routine with other tools. Everything is
-    processed locally on your Mac, no file ever leaves the device.</p>
+    processed locally on your Mac, no file ever leaves the device. It also
+    integrates with the Finder: select a <code>.p7m</code> and press the
+    spacebar for a Quick Look preview, without even opening the app.</p>
+
+    <img class="screenshot" src="screenshot.png" alt="Unwrap window with the drop area for a .p7m file or an .xml invoice">
 
     <div class="card">
       <strong>Got an issue or a question?</strong>
