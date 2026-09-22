@@ -165,7 +165,7 @@
   .subtitle {
     color: var(--muted);
     margin: 0 0 8px;
-    font-size: 18px;
+    font-size: 20px;
     max-width: 34em;
   }
   .mas-badge {
@@ -220,7 +220,7 @@
     box-shadow: var(--shadow);
   }
   .card + .card { margin-top: 12px; }
-  .card strong {
+  .card > strong {
     display: block;
     margin-bottom: 6px;
     font-size: 15px;
@@ -315,7 +315,7 @@
     <img class="icon" src="icon.png" alt="Icona di Unwrap">
     <div class="prose">
       <h1>Unwrap — P7M e XML Viewer</h1>
-      <p class="subtitle"><strong>App per macOS che apre <em>velocemente</em> i file .p7m.<br>Apri con un doppio click, visualizza l'anteprima con spazio</strong></p>
+      <p class="subtitle"><strong>App per macOS che apre <em>velocemente</em> i file .p7m.</strong><br>Apri con un doppio click, visualizza l'anteprima con spazio</p>
       <a class="mas-badge" href="#" onclick="return false;" title="Link disponibile a breve">
         <img src="badges/mac-app-store-badge-it.svg" alt="Disponibile su Mac App Store">
       </a>
@@ -336,6 +336,11 @@
     </div>
 
     <div class="prose">
+      <div class="card">
+        <strong>Come iniziare</strong>
+        <p>1. <strong>Associa i file .p7m a Unwrap</strong> — la prima volta, fai clic destro su un file <code>.p7m</code> → "Apri con" → Unwrap → "Cambia tutto...". Da quel momento basterà il doppio clic per aprirlo sempre con Unwrap.</p>
+        <p>2. <strong>Estrai il contenuto in un attimo</strong> — una volta aperto il file, puoi salvare o trascinare fuori il contenuto (PDF, fattura, XML, immagine) in pochi secondi, senza passaggi intermedi.</p>
+      </div>
       <div class="card">
         <strong>Hai un problema o una domanda?</strong>
         <p>Scrivimi direttamente, rispondo io: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Assistenza">francesco.tarini@gmail.com</a></p>
