@@ -9,19 +9,25 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #ffffff;
+    --bg: #f5f6fa;
+    --surface: #ffffff;
     --fg: #1c1c1e;
     --muted: #6e6e73;
     --accent: #0a5cff;
+    --accent-2: #7c3aed;
     --border: #e5e5ea;
+    --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1c1e;
+      --bg: #101014;
+      --surface: #1c1c1e;
       --fg: #f5f5f7;
       --muted: #a1a1a6;
-      --accent: #4d9fff;
-      --border: #3a3a3c;
+      --accent: #5fa1ff;
+      --accent-2: #a684ff;
+      --border: #313134;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
     }
   }
   * { box-sizing: border-box; }
@@ -32,38 +38,63 @@
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.55;
   }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1100px 480px at 15% -10%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 60%),
+      radial-gradient(900px 420px at 100% 0%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 55%);
+    border-bottom: 1px solid var(--border);
+  }
   main {
     max-width: 900px;
     margin: 0 auto;
-    padding: 56px 20px 80px;
+    padding: 48px 20px 80px;
   }
+  .hero main { padding-bottom: 40px; }
   .icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 16px;
+    width: 84px;
+    height: 84px;
+    border-radius: 20px;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .screenshot-wrap {
+    margin: 36px 0;
+    padding: 28px;
+    border-radius: 20px;
+    background:
+      radial-gradient(600px 260px at 20% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%),
+      var(--surface);
+    border: 1px solid var(--border);
   }
   .screenshot {
     width: 100%;
     height: auto;
     border-radius: 12px;
     display: block;
-    margin: 24px 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow);
   }
   h1 {
-    font-size: 28px;
-    margin: 0 0 4px;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    background: linear-gradient(90deg, var(--fg), var(--accent) 140%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .subtitle {
     color: var(--muted);
-    margin: 0 0 32px;
-    font-size: 16px;
+    margin: 0 0 8px;
+    font-size: 18px;
+    max-width: 34em;
   }
   h2 {
-    font-size: 18px;
-    margin: 40px 0 12px;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    margin: 48px 0 16px;
   }
   p {
     margin: 0 0 12px;
@@ -73,22 +104,45 @@
     text-decoration: none;
   }
   a:hover { text-decoration: underline; }
+  code {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-size: 0.92em;
+  }
   .card {
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 12px;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-top: 16px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
   }
   .card + .card { margin-top: 12px; }
   .card strong {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    font-size: 15px;
   }
   ul {
-    margin: 0 0 12px;
-    padding-left: 20px;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
   }
-  li { margin-bottom: 6px; }
+  li {
+    margin: 0;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  li strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--fg);
+  }
   footer {
     margin-top: 56px;
     padding-top: 20px;
@@ -97,22 +151,26 @@
     font-size: 13px;
   }
   .lang-toggle {
+    display: inline-flex;
     margin-bottom: 32px;
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
     font-size: 14px;
   }
   .lang-toggle button {
     background: none;
-    border: 1px solid var(--border);
+    border: none;
     color: var(--fg);
-    border-radius: 6px;
-    padding: 4px 10px;
+    border-radius: 999px;
+    padding: 6px 14px;
     font-size: 13px;
     cursor: pointer;
-    margin-right: 6px;
   }
   .lang-toggle button.active {
     background: var(--accent);
-    border-color: var(--accent);
     color: #fff;
   }
   [data-lang="en"] { display: none; }
@@ -122,6 +180,7 @@
 </style>
 </head>
 <body>
+<div class="hero">
 <main>
   <div class="lang-toggle">
     <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
@@ -140,7 +199,9 @@
     premere la barra spaziatrice per vederne l'anteprima con Quick Look,
     senza nemmeno aprire l'app.</p>
 
-    <img class="screenshot" src="screenshot.png" alt="Finestra di Unwrap con l'area per trascinare un file .p7m o una fattura .xml">
+    <div class="screenshot-wrap">
+      <img class="screenshot" src="screenshot.png" alt="Finestra di Unwrap con l'area per trascinare un file .p7m o una fattura .xml">
+    </div>
 
     <div class="card">
       <strong>Hai un problema o una domanda?</strong>
@@ -150,7 +211,7 @@
     <h2>Domande frequenti</h2>
     <ul>
       <li><strong>Cos'è un file .p7m?</strong> È un documento (PDF, fattura elettronica, XML, immagine...) racchiuso in una "busta" firmata digitalmente secondo lo standard CAdES/PKCS#7, usato in Italia per fatture elettroniche, PEC e comunicazioni con la Pubblica Amministrazione. Unwrap apre la busta e mostra subito il contenuto.</li>
-      <li><strong>Requisiti</strong>: macOS 27 "Golden Gate" o successivo, Mac con Apple Silicon.</li>
+      <li><strong>Requisiti</strong>macOS 27 "Golden Gate" o successivo, Mac con Apple Silicon.</li>
       <li><strong>I miei file lasciano il Mac?</strong> No: l'estrazione e la lettura avvengono interamente in locale. La rete è usata solo per il foglio di stile delle fatture elettroniche, la verifica facoltativa della firma (OCSP/CRL) e il link "Dona".</li>
       <li><strong>Cos'è il banner donazioni?</strong> Un invito occasionale, disattivabile nelle Impostazioni, a sostenere volontariamente lo sviluppo tramite un link PayPal esterno. Non sblocca nessuna funzionalità.</li>
     </ul>
@@ -169,7 +230,9 @@
     integrates with the Finder: select a <code>.p7m</code> and press the
     spacebar for a Quick Look preview, without even opening the app.</p>
 
-    <img class="screenshot" src="screenshot.png" alt="Unwrap window with the drop area for a .p7m file or an .xml invoice">
+    <div class="screenshot-wrap">
+      <img class="screenshot" src="screenshot.png" alt="Unwrap window with the drop area for a .p7m file or an .xml invoice">
+    </div>
 
     <div class="card">
       <strong>Got an issue or a question?</strong>
@@ -179,7 +242,7 @@
     <h2>FAQ</h2>
     <ul>
       <li><strong>What is a .p7m file?</strong> It's a document (PDF, e-invoice, XML, image...) wrapped in a digitally signed "envelope" following the CAdES/PKCS#7 standard, widely used in Italy for electronic invoices, certified email (PEC) and communications with public administration. Unwrap opens the envelope and shows the content right away.</li>
-      <li><strong>Requirements</strong>: macOS 27 "Golden Gate" or later, Apple Silicon Mac.</li>
+      <li><strong>Requirements</strong>macOS 27 "Golden Gate" or later, Apple Silicon Mac.</li>
       <li><strong>Does my data leave the Mac?</strong> No: extraction and reading happen entirely on-device. Network access is only used for the invoice stylesheet, the optional signature check (OCSP/CRL), and the "Donate" link.</li>
       <li><strong>What is the donation banner?</strong> An occasional, dismissible prompt (can be turned off in Settings) to voluntarily support development via an external PayPal link. It never unlocks any feature.</li>
     </ul>
@@ -187,6 +250,7 @@
     <footer>Unwrap &middot; independent app, developed by Francesco Tarini. &middot; <a href="privacy.html">Privacy Policy</a></footer>
   </div>
 </main>
+</div>
 <script>
   function setLang(lang) {
     document.body.classList.toggle('lang-en', lang === 'en');
