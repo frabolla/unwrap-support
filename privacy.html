@@ -9,19 +9,25 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #ffffff;
+    --bg: #f5f6fa;
+    --surface: #ffffff;
     --fg: #1c1c1e;
     --muted: #6e6e73;
-    --accent: #0a5cff;
+    --accent: #2f5fa0;
+    --accent-2: #c99a44;
     --border: #e5e5ea;
+    --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1c1e;
+      --bg: #0d1420;
+      --surface: #161d2b;
       --fg: #f5f5f7;
-      --muted: #a1a1a6;
-      --accent: #4d9fff;
-      --border: #3a3a3c;
+      --muted: #a3aebc;
+      --accent: #6fa3e0;
+      --accent-2: #e8c983;
+      --border: #2a3446;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
     }
   }
   * { box-sizing: border-box; }
@@ -32,23 +38,49 @@
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.55;
   }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1100px 480px at 15% -10%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 60%),
+      radial-gradient(900px 420px at 100% 0%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 55%);
+    border-bottom: 1px solid var(--border);
+  }
   main {
     max-width: 900px;
     margin: 0 auto;
-    padding: 56px 20px 80px;
+    padding: 48px 20px 80px;
   }
+  .hero main { padding-bottom: 40px; }
   h1 {
-    font-size: 28px;
-    margin: 0 0 4px;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    background: linear-gradient(90deg, var(--fg), var(--accent) 140%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .subtitle {
     color: var(--muted);
-    margin: 0 0 32px;
+    margin: 0 0 8px;
     font-size: 16px;
   }
   h2 {
-    font-size: 18px;
-    margin: 36px 0 12px;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    flex-shrink: 0;
   }
   p {
     margin: 0 0 12px;
@@ -58,11 +90,31 @@
     text-decoration: none;
   }
   a:hover { text-decoration: underline; }
+  code {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-size: 0.92em;
+  }
   ul {
     margin: 0 0 12px;
-    padding-left: 20px;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
   }
-  li { margin-bottom: 6px; }
+  li {
+    margin: 0;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  li strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--fg);
+  }
   footer {
     margin-top: 56px;
     padding-top: 20px;
@@ -71,34 +123,44 @@
     font-size: 13px;
   }
   .lang-toggle {
+    display: inline-flex;
     margin-bottom: 32px;
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
     font-size: 14px;
   }
   .lang-toggle button {
     background: none;
-    border: 1px solid var(--border);
+    border: none;
     color: var(--fg);
-    border-radius: 6px;
-    padding: 4px 10px;
+    border-radius: 999px;
+    padding: 6px 14px;
     font-size: 13px;
     cursor: pointer;
-    margin-right: 6px;
   }
   .lang-toggle button.active {
     background: var(--accent);
-    border-color: var(--accent);
     color: #fff;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-2) 45%, transparent);
   }
   .nav {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     font-size: 14px;
   }
+  .nav a {
+    color: var(--muted);
+  }
+  .nav a:hover { color: var(--accent); }
   [data-lang="en"] { display: none; }
   body.lang-en [data-lang="it"] { display: none; }
   body.lang-en [data-lang="en"] { display: block; }
 </style>
 </head>
 <body>
+<div class="hero">
 <main>
   <div class="lang-toggle">
     <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
@@ -132,7 +194,7 @@
     <p>Unwrap richiede l'autorizzazione di rete solo per queste funzioni,
     tutte facoltative o innescate da un'azione esplicita:</p>
     <ul>
-      <li><strong>Fatture elettroniche</strong>: al primo utilizzo scarica
+      <li><strong>Fatture elettroniche</strong>Al primo utilizzo scarica
       una volta sola il foglio di stile pubblico da
       <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
       per impaginare la fattura, e lo conserva in cache sul Mac. Non viene
@@ -143,7 +205,7 @@
       per controllare la validità del certificato di firma del documento.
       Queste richieste riguardano il certificato del documento, non la tua
       identità.</li>
-      <li><strong>Link "Dona"</strong>: apre il browser di sistema su una
+      <li><strong>Link "Dona"</strong>Apre il browser di sistema su una
       pagina PayPal esterna, gestita da PayPal, non da Unwrap.</li>
     </ul>
     <p>Se non usi queste funzioni, l'app non effettua alcuna richiesta di
@@ -197,7 +259,7 @@
     <p>Unwrap requests network access only for these features, all
     optional or triggered by an explicit action:</p>
     <ul>
-      <li><strong>Electronic invoices</strong>: on first use, it downloads
+      <li><strong>Electronic invoices</strong>On first use, it downloads
       the public stylesheet once from
       <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
       to render the invoice, and caches it locally. No file data is sent,
@@ -207,7 +269,7 @@
       Lists to check the validity of the document's signing certificate.
       These requests concern the document's certificate, not your
       identity.</li>
-      <li><strong>"Donate" link</strong>: opens the system browser to an
+      <li><strong>"Donate" link</strong>Opens the system browser to an
       external PayPal page, handled by PayPal, not by Unwrap.</li>
     </ul>
     <p>If you don't use these features, the app makes no network
@@ -234,6 +296,7 @@
     <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
   </div>
 </main>
+</div>
 <script>
   function setLang(lang) {
     document.body.classList.toggle('lang-en', lang === 'en');
