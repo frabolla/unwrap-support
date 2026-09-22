@@ -6,6 +6,14 @@
 <title>Privacy Policy — Unwrap</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
+<script>
+  try {
+    var savedTheme = localStorage.getItem('unwrap-support-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch (e) {}
+</script>
 <style>
   :root {
     color-scheme: light dark;
@@ -19,7 +27,7 @@
     --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #0d1420;
       --surface: #161d2b;
       --fg: #f5f5f7;
@@ -29,6 +37,20 @@
       --border: #2a3446;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
     }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0d1420;
+    --surface: #161d2b;
+    --fg: #f5f5f7;
+    --muted: #a3aebc;
+    --accent: #6fa3e0;
+    --accent-2: #e8c983;
+    --border: #2a3446;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
   body {
@@ -126,9 +148,15 @@
     color: var(--muted);
     font-size: 13px;
   }
-  .lang-toggle {
-    display: inline-flex;
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 32px;
+  }
+  .lang-toggle, .theme-toggle {
+    display: inline-flex;
     padding: 3px;
     gap: 2px;
     border: 1px solid var(--border);
@@ -136,7 +164,7 @@
     background: var(--surface);
     font-size: 14px;
   }
-  .lang-toggle button {
+  .lang-toggle button, .theme-toggle button {
     background: none;
     border: none;
     color: var(--fg);
@@ -144,8 +172,13 @@
     padding: 6px 14px;
     font-size: 13px;
     cursor: pointer;
+    line-height: 1;
   }
-  .lang-toggle button.active {
+  .theme-toggle button {
+    padding: 6px 10px;
+    font-size: 15px;
+  }
+  .lang-toggle button.active, .theme-toggle button.active {
     background: var(--accent);
     color: #fff;
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-2) 45%, transparent);
@@ -166,9 +199,16 @@
 <body>
 <div class="hero">
 <main>
-  <div class="lang-toggle">
-    <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
-    <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+  <div class="toolbar">
+    <div class="theme-toggle" role="group" aria-label="Tema">
+      <button type="button" id="theme-auto" class="active" onclick="setTheme(null)" title="Segui il sistema">🖥️</button>
+      <button type="button" id="theme-light" onclick="setTheme('light')" title="Tema chiaro">☀️</button>
+      <button type="button" id="theme-dark" onclick="setTheme('dark')" title="Tema scuro">🌙</button>
+    </div>
+    <div class="lang-toggle">
+      <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
+      <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+    </div>
   </div>
 
   <div data-lang="it">
@@ -240,7 +280,7 @@
       <h2>Contatti</h2>
       <p>Per domande su questa privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
 
-      <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini.</footer>
+      <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini 🇮🇹.</footer>
     </div>
   </div>
 
@@ -309,7 +349,7 @@
       <h2>Contact</h2>
       <p>Questions about this privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
 
-      <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
+      <footer>Unwrap &middot; independent app, developed by Francesco Tarini 🇮🇹.</footer>
     </div>
   </div>
 </main>
@@ -325,6 +365,24 @@
     var saved = localStorage.getItem('unwrap-support-lang');
     if (saved === 'en') setLang('en');
   } catch (e) {}
+
+  function setTheme(theme) {
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    document.getElementById('theme-auto').classList.toggle('active', !theme);
+    document.getElementById('theme-light').classList.toggle('active', theme === 'light');
+    document.getElementById('theme-dark').classList.toggle('active', theme === 'dark');
+    try { localStorage.setItem('unwrap-support-theme', theme || ''); } catch (e) {}
+  }
+  (function () {
+    try {
+      var savedTheme = localStorage.getItem('unwrap-support-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') setTheme(savedTheme);
+    } catch (e) {}
+  })();
 </script>
 </body>
 </html>

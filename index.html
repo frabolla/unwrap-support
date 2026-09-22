@@ -6,6 +6,14 @@
 <title>Unwrap - P7M e XML Viewer</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
+<script>
+  try {
+    var savedTheme = localStorage.getItem('unwrap-support-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch (e) {}
+</script>
 <style>
   :root {
     color-scheme: light dark;
@@ -19,7 +27,7 @@
     --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #0d1420;
       --surface: #161d2b;
       --fg: #f5f5f7;
@@ -29,6 +37,20 @@
       --border: #2a3446;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
     }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0d1420;
+    --surface: #161d2b;
+    --fg: #f5f5f7;
+    --muted: #a3aebc;
+    --accent: #6fa3e0;
+    --accent-2: #e8c983;
+    --border: #2a3446;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
   body {
@@ -53,9 +75,9 @@
   }
   .hero main { padding-bottom: 40px; }
   .icon {
-    width: 84px;
-    height: 84px;
-    border-radius: 20px;
+    width: 128px;
+    height: 128px;
+    border-radius: 28px;
     display: block;
     margin-bottom: 24px;
     box-shadow: var(--shadow), 0 0 0 3px color-mix(in srgb, var(--accent-2) 30%, transparent);
@@ -146,6 +168,19 @@
     font-size: 18px;
     max-width: 34em;
   }
+  .mas-badge {
+    display: inline-block;
+    margin: 4px 0 28px;
+    line-height: 0;
+    border-radius: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--shadow);
+  }
+  .mas-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18), 0 10px 28px rgba(0, 0, 0, 0.12);
+  }
+  .mas-badge svg { display: block; height: 46px; width: auto; }
   h2 {
     font-size: 20px;
     letter-spacing: -0.01em;
@@ -220,9 +255,15 @@
     color: var(--muted);
     font-size: 13px;
   }
-  .lang-toggle {
-    display: inline-flex;
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 32px;
+  }
+  .lang-toggle, .theme-toggle {
+    display: inline-flex;
     padding: 3px;
     gap: 2px;
     border: 1px solid var(--border);
@@ -230,7 +271,7 @@
     background: var(--surface);
     font-size: 14px;
   }
-  .lang-toggle button {
+  .lang-toggle button, .theme-toggle button {
     background: none;
     border: none;
     color: var(--fg);
@@ -238,8 +279,13 @@
     padding: 6px 14px;
     font-size: 13px;
     cursor: pointer;
+    line-height: 1;
   }
-  .lang-toggle button.active {
+  .theme-toggle button {
+    padding: 6px 10px;
+    font-size: 15px;
+  }
+  .lang-toggle button.active, .theme-toggle button.active {
     background: var(--accent);
     color: #fff;
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-2) 45%, transparent);
@@ -253,9 +299,16 @@
 <body>
 <div class="hero">
 <main>
-  <div class="lang-toggle">
-    <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
-    <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+  <div class="toolbar">
+    <div class="theme-toggle" role="group" aria-label="Tema">
+      <button type="button" id="theme-auto" class="active" onclick="setTheme(null)" title="Segui il sistema">🖥️</button>
+      <button type="button" id="theme-light" onclick="setTheme('light')" title="Tema chiaro">☀️</button>
+      <button type="button" id="theme-dark" onclick="setTheme('dark')" title="Tema scuro">🌙</button>
+    </div>
+    <div class="lang-toggle">
+      <button type="button" id="btn-it" class="active" onclick="setLang('it')">Italiano</button>
+      <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+    </div>
   </div>
 
   <div data-lang="it">
@@ -263,6 +316,16 @@
     <div class="prose">
       <h1>Unwrap — P7M e XML Viewer</h1>
       <p class="subtitle">App per macOS che apre i file .p7m (buste firmate CAdES/PKCS#7).</p>
+      <a class="mas-badge" href="#" onclick="return false;" title="Link disponibile a breve" aria-label="Scarica su Mac App Store">
+        <svg viewBox="0 0 180 52" xmlns="http://www.w3.org/2000/svg" role="img">
+          <rect width="180" height="52" rx="10" fill="#000"/>
+          <g transform="translate(14,13) scale(0.047)" fill="#fff">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </g>
+          <text x="41" y="20" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="9">Scarica su</text>
+          <text x="41" y="38" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600">Mac App Store</text>
+        </svg>
+      </a>
       <p>Con un doppio clic mostra subito il contenuto: PDF, fattura elettronica
       impaginata, XML con sintassi colorata, testo o immagine — senza il
       solito giro verifica → estrazione → apertura con altri strumenti.
@@ -294,7 +357,7 @@
       <li><strong>Cos'è il banner donazioni?</strong> Un invito occasionale, disattivabile nelle Impostazioni, a sostenere volontariamente lo sviluppo tramite un link PayPal esterno. Non sblocca nessuna funzionalità.</li>
     </ul>
 
-    <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini. &middot; <a href="privacy.html">Privacy Policy</a></footer>
+    <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini 🇮🇹. &middot; <a href="privacy.html">Privacy Policy</a></footer>
   </div>
 
   <div data-lang="en">
@@ -302,6 +365,16 @@
     <div class="prose">
       <h1>Unwrap — P7M and XML Viewer</h1>
       <p class="subtitle">A macOS app that opens .p7m files (signed CAdES/PKCS#7 envelopes).</p>
+      <a class="mas-badge" href="#" onclick="return false;" title="Link coming soon" aria-label="Download on the Mac App Store">
+        <svg viewBox="0 0 180 52" xmlns="http://www.w3.org/2000/svg" role="img">
+          <rect width="180" height="52" rx="10" fill="#000"/>
+          <g transform="translate(14,13) scale(0.047)" fill="#fff">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </g>
+          <text x="41" y="20" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="8">Download on the</text>
+          <text x="41" y="38" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600">Mac App Store</text>
+        </svg>
+      </a>
       <p>One double-click shows the content right away: PDF, a nicely formatted
       e-invoice, syntax-highlighted XML, text or an image — instead of the
       usual verify → extract → open routine with other tools. Everything is
@@ -332,7 +405,7 @@
       <li><strong>What is the donation banner?</strong> An occasional, dismissible prompt (can be turned off in Settings) to voluntarily support development via an external PayPal link. It never unlocks any feature.</li>
     </ul>
 
-    <footer>Unwrap &middot; independent app, developed by Francesco Tarini. &middot; <a href="privacy.html">Privacy Policy</a></footer>
+    <footer>Unwrap &middot; independent app, developed by Francesco Tarini 🇮🇹. &middot; <a href="privacy.html">Privacy Policy</a></footer>
   </div>
 </main>
 </div>
@@ -351,6 +424,24 @@
     var saved = localStorage.getItem('unwrap-support-lang');
     if (saved === 'en') setLang('en');
   } catch (e) {}
+
+  function setTheme(theme) {
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    document.getElementById('theme-auto').classList.toggle('active', !theme);
+    document.getElementById('theme-light').classList.toggle('active', theme === 'light');
+    document.getElementById('theme-dark').classList.toggle('active', theme === 'dark');
+    try { localStorage.setItem('unwrap-support-theme', theme || ''); } catch (e) {}
+  }
+  (function () {
+    try {
+      var savedTheme = localStorage.getItem('unwrap-support-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') setTheme(savedTheme);
+    } catch (e) {}
+  })();
 
   function openLightbox(button) {
     var img = button.querySelector('img');
