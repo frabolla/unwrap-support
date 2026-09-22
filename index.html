@@ -13,21 +13,21 @@
     --surface: #ffffff;
     --fg: #1c1c1e;
     --muted: #6e6e73;
-    --accent: #0a5cff;
-    --accent-2: #7c3aed;
+    --accent: #2f5fa0;
+    --accent-2: #c99a44;
     --border: #e5e5ea;
     --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #101014;
-      --surface: #1c1c1e;
+      --bg: #0d1420;
+      --surface: #161d2b;
       --fg: #f5f5f7;
-      --muted: #a1a1a6;
-      --accent: #5fa1ff;
-      --accent-2: #a684ff;
-      --border: #313134;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+      --muted: #a3aebc;
+      --accent: #6fa3e0;
+      --accent-2: #e8c983;
+      --border: #2a3446;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
     }
   }
   * { box-sizing: border-box; }
@@ -58,23 +58,41 @@
     border-radius: 20px;
     display: block;
     margin-bottom: 24px;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow), 0 0 0 3px color-mix(in srgb, var(--accent-2) 30%, transparent);
   }
-  .screenshot-wrap {
-    margin: 36px 0;
-    padding: 28px;
-    border-radius: 20px;
+  .gallery {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin: 36px -4px;
+    padding: 6px 4px 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery::-webkit-scrollbar { height: 8px; }
+  .gallery::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .shot {
+    flex: 0 0 82%;
+    max-width: 380px;
+    margin: 0;
+    scroll-snap-align: center;
+    padding: 12px;
+    border-radius: 18px;
     background:
-      radial-gradient(600px 260px at 20% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%),
+      radial-gradient(400px 200px at 15% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 65%),
+      radial-gradient(320px 160px at 100% 100%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 60%),
       var(--surface);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow);
   }
-  .screenshot {
+  @media (min-width: 640px) {
+    .shot { flex-basis: 320px; }
+  }
+  .shot img {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 10px;
     display: block;
-    box-shadow: var(--shadow);
   }
   h1 {
     font-size: 34px;
@@ -95,6 +113,17 @@
     font-size: 20px;
     letter-spacing: -0.01em;
     margin: 48px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    flex-shrink: 0;
   }
   p {
     margin: 0 0 12px;
@@ -172,6 +201,7 @@
   .lang-toggle button.active {
     background: var(--accent);
     color: #fff;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-2) 45%, transparent);
   }
   [data-lang="en"] { display: none; }
   body.lang-en [data-lang="it"] { display: none; }
@@ -199,8 +229,11 @@
     premere la barra spaziatrice per vederne l'anteprima con Quick Look,
     senza nemmeno aprire l'app.</p>
 
-    <div class="screenshot-wrap">
-      <img class="screenshot" src="screenshot.png" alt="Finestra di Unwrap con l'area per trascinare un file .p7m o una fattura .xml">
+    <div class="gallery">
+      <figure class="shot"><img src="screenshots/screenshot-1.png" alt="Unwrap mostra subito il PDF estratto da un file .p7m, con i dettagli della busta firmata nel pannello laterale"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-2.png" alt="Fattura elettronica impaginata, letta da un file .p7m, con tema d'accento blu in modalità scura"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-3.png" alt="La stessa fattura elettronica con tema d'accento verde in modalità chiara"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-4.png" alt="Un altro PDF estratto da un file .p7m, con tema d'accento turchese in modalità scura"></figure>
     </div>
 
     <div class="card">
@@ -230,8 +263,11 @@
     integrates with the Finder: select a <code>.p7m</code> and press the
     spacebar for a Quick Look preview, without even opening the app.</p>
 
-    <div class="screenshot-wrap">
-      <img class="screenshot" src="screenshot.png" alt="Unwrap window with the drop area for a .p7m file or an .xml invoice">
+    <div class="gallery">
+      <figure class="shot"><img src="screenshots/screenshot-1.png" alt="Unwrap instantly shows the PDF extracted from a .p7m file, with the signed envelope's details in the side panel"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-2.png" alt="A formatted e-invoice read from a .p7m file, with a blue accent theme in dark mode"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-3.png" alt="The same e-invoice with a green accent theme in light mode"></figure>
+      <figure class="shot"><img src="screenshots/screenshot-4.png" alt="Another PDF extracted from a .p7m file, with a teal accent theme in dark mode"></figure>
     </div>
 
     <div class="card">
