@@ -47,11 +47,14 @@
     border-bottom: 1px solid var(--border);
   }
   main {
-    max-width: 900px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 48px 20px 80px;
+    padding: 48px clamp(20px, 5vw, 56px) 80px;
   }
   .hero main { padding-bottom: 40px; }
+  .prose {
+    max-width: 700px;
+  }
   h1 {
     font-size: 30px;
     letter-spacing: -0.02em;
@@ -101,6 +104,7 @@
     padding-left: 0;
     list-style: none;
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 12px;
   }
   li {
@@ -168,37 +172,42 @@
   </div>
 
   <div data-lang="it">
-    <p class="nav"><a href="index.html">&larr; Assistenza Unwrap</a></p>
-    <h1>Privacy Policy — Unwrap</h1>
-    <p class="subtitle">Ultimo aggiornamento: settembre 2026</p>
+    <div class="prose">
+      <p class="nav"><a href="index.html">&larr; Assistenza Unwrap</a></p>
+      <h1>Privacy Policy — Unwrap</h1>
+      <p class="subtitle">Ultimo aggiornamento: settembre 2026</p>
 
-    <p>Unwrap è un'app per macOS che apre file <code>.p7m</code> (buste
-    firmate CAdES/PKCS#7) e ne mostra il contenuto. Questa pagina descrive
-    quali dati l'app tratta e come.</p>
+      <p>Unwrap è un'app per macOS che apre file <code>.p7m</code> (buste
+      firmate CAdES/PKCS#7) e ne mostra il contenuto. Questa pagina descrive
+      quali dati l'app tratta e come.</p>
 
-    <h2>Nessuna raccolta dati</h2>
-    <p>Unwrap <strong>non raccoglie, non trasmette e non vende</strong>
-    alcun dato personale. Non ci sono account, non c'è analytics, non c'è
-    tracciamento pubblicitario, non ci sono SDK di terze parti per la
-    raccolta dati. L'app non sa chi sei e non ha modo di identificarti.</p>
+      <h2>Nessuna raccolta dati</h2>
+      <p>Unwrap <strong>non raccoglie, non trasmette e non vende</strong>
+      alcun dato personale. Non ci sono account, non c'è analytics, non c'è
+      tracciamento pubblicitario, non ci sono SDK di terze parti per la
+      raccolta dati. L'app non sa chi sei e non ha modo di identificarti.</p>
 
-    <h2>Elaborazione dei file</h2>
-    <p>L'apertura e l'estrazione dei file <code>.p7m</code> avvengono
-    <strong>interamente sul tuo Mac</strong>, usando solo il framework di
-    sistema <code>Security</code> di Apple. I file che apri non lasciano mai
-    il dispositivo. Il contenuto estratto resta in memoria e viene scritto
-    su disco solo quando scegli tu di salvarlo, esportarlo o aprirlo con
-    un'altra app.</p>
+      <h2>Elaborazione dei file</h2>
+      <p>L'apertura e l'estrazione dei file <code>.p7m</code> avvengono
+      <strong>interamente sul tuo Mac</strong>, usando solo il framework di
+      sistema <code>Security</code> di Apple. I file che apri non lasciano mai
+      il dispositivo. Il contenuto estratto resta in memoria e viene scritto
+      su disco solo quando scegli tu di salvarlo, esportarlo o aprirlo con
+      un'altra app.</p>
 
-    <h2>Quando l'app usa la rete</h2>
-    <p>Unwrap richiede l'autorizzazione di rete solo per queste funzioni,
-    tutte facoltative o innescate da un'azione esplicita:</p>
+      <h2>Quando l'app usa la rete</h2>
+      <p>Unwrap richiede l'autorizzazione di rete solo per queste funzioni,
+      tutte facoltative o innescate da un'azione esplicita:</p>
+    </div>
     <ul>
       <li><strong>Fatture elettroniche</strong>Al primo utilizzo scarica
-      una volta sola il foglio di stile pubblico da
+      una volta sola il foglio di stile pubblico per impaginare la fattura, e
+      lo conserva in cache sul Mac. La fonte è quella scelta nelle impostazioni
+      dell'app:
       <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
-      per impaginare la fattura, e lo conserva in cache sul Mac. Non viene
-      inviato alcun dato del file, solo la richiesta di scaricare il
+      oppure l'Agenzia delle Entrate
+      (<a href="https://www.fatturapa.gov.it" target="_blank" rel="noopener">fatturapa.gov.it</a>).
+      Non viene inviato alcun dato del file, solo la richiesta di scaricare il
       foglio di stile.</li>
       <li><strong>Verifica firma…</strong> (funzione a richiesta): interroga
       i servizi OCSP/CRL degli enti certificatori e le Trusted List eIDAS
@@ -208,62 +217,68 @@
       <li><strong>Link "Dona"</strong>Apre il browser di sistema su una
       pagina PayPal esterna, gestita da PayPal, non da Unwrap.</li>
     </ul>
-    <p>Se non usi queste funzioni, l'app non effettua alcuna richiesta di
-    rete. L'estensione Quick Look (anteprima nel Finder) non ha accesso
-    alla rete.</p>
+    <div class="prose">
+      <p>Se non usi queste funzioni, l'app non effettua alcuna richiesta di
+      rete. L'estensione Quick Look (anteprima nel Finder) non ha accesso
+      alla rete.</p>
 
-    <h2>Permessi del sistema</h2>
-    <p>Unwrap gira in <strong>App Sandbox</strong> e accede solo ai file
-    che apri esplicitamente (doppio clic, drag & drop, "Apri con" o
-    selezione da finestra di dialogo). Non ha accesso generico al disco,
-    non legge altri file o cartelle.</p>
+      <h2>Permessi del sistema</h2>
+      <p>Unwrap gira in <strong>App Sandbox</strong> e accede solo ai file
+      che apri esplicitamente (doppio clic, drag & drop, "Apri con" o
+      selezione da finestra di dialogo). Non ha accesso generico al disco,
+      non legge altri file o cartelle.</p>
 
-    <h2>Minori</h2>
-    <p>Unwrap non è rivolta specificamente ai minori e non raccoglie
-    consapevolmente dati di minori, in quanto non raccoglie dati da
-    nessun utente.</p>
+      <h2>Minori</h2>
+      <p>Unwrap non è rivolta specificamente ai minori e non raccoglie
+      consapevolmente dati di minori, in quanto non raccoglie dati da
+      nessun utente.</p>
 
-    <h2>Modifiche a questa policy</h2>
-    <p>Eventuali aggiornamenti verranno pubblicati su questa stessa
-    pagina, con la data di ultimo aggiornamento in cima.</p>
+      <h2>Modifiche a questa policy</h2>
+      <p>Eventuali aggiornamenti verranno pubblicati su questa stessa
+      pagina, con la data di ultimo aggiornamento in cima.</p>
 
-    <h2>Contatti</h2>
-    <p>Per domande su questa privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
+      <h2>Contatti</h2>
+      <p>Per domande su questa privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
 
-    <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini.</footer>
+      <footer>Unwrap &middot; app indipendente, sviluppata da Francesco Tarini.</footer>
+    </div>
   </div>
 
   <div data-lang="en">
-    <p class="nav"><a href="index.html">&larr; Unwrap Support</a></p>
-    <h1>Privacy Policy — Unwrap</h1>
-    <p class="subtitle">Last updated: September 2026</p>
+    <div class="prose">
+      <p class="nav"><a href="index.html">&larr; Unwrap Support</a></p>
+      <h1>Privacy Policy — Unwrap</h1>
+      <p class="subtitle">Last updated: September 2026</p>
 
-    <p>Unwrap is a macOS app that opens <code>.p7m</code> files (signed
-    CAdES/PKCS#7 envelopes) and shows their content. This page describes
-    what data the app processes and how.</p>
+      <p>Unwrap is a macOS app that opens <code>.p7m</code> files (signed
+      CAdES/PKCS#7 envelopes) and shows their content. This page describes
+      what data the app processes and how.</p>
 
-    <h2>No data collection</h2>
-    <p>Unwrap does <strong>not collect, transmit, or sell</strong> any
-    personal data. There are no accounts, no analytics, no advertising
-    tracking, and no third-party data-collection SDKs. The app has no way
-    to identify you.</p>
+      <h2>No data collection</h2>
+      <p>Unwrap does <strong>not collect, transmit, or sell</strong> any
+      personal data. There are no accounts, no analytics, no advertising
+      tracking, and no third-party data-collection SDKs. The app has no way
+      to identify you.</p>
 
-    <h2>File processing</h2>
-    <p>Opening and extracting <code>.p7m</code> files happens
-    <strong>entirely on your Mac</strong>, using only Apple's system
-    <code>Security</code> framework. Files you open never leave the
-    device. Extracted content stays in memory and is only written to disk
-    when you choose to save, export, or open it with another app.</p>
+      <h2>File processing</h2>
+      <p>Opening and extracting <code>.p7m</code> files happens
+      <strong>entirely on your Mac</strong>, using only Apple's system
+      <code>Security</code> framework. Files you open never leave the
+      device. Extracted content stays in memory and is only written to disk
+      when you choose to save, export, or open it with another app.</p>
 
-    <h2>When the app uses the network</h2>
-    <p>Unwrap requests network access only for these features, all
-    optional or triggered by an explicit action:</p>
+      <h2>When the app uses the network</h2>
+      <p>Unwrap requests network access only for these features, all
+      optional or triggered by an explicit action:</p>
+    </div>
     <ul>
-      <li><strong>Electronic invoices</strong>On first use, it downloads
-      the public stylesheet once from
+      <li><strong>Electronic invoices</strong>On first use, it downloads the
+      public stylesheet once to render the invoice, and caches it locally. The
+      source is the one selected in the app's settings:
       <a href="https://www.assosoftware.it" target="_blank" rel="noopener">assosoftware.it</a>
-      to render the invoice, and caches it locally. No file data is sent,
-      only the request to download the stylesheet.</li>
+      or the Italian Revenue Agency
+      (<a href="https://www.fatturapa.gov.it" target="_blank" rel="noopener">fatturapa.gov.it</a>).
+      No file data is sent, only the request to download the stylesheet.</li>
       <li><strong>Verify signature…</strong> (on-demand feature): queries
       certificate authorities' OCSP/CRL services and the eIDAS Trusted
       Lists to check the validity of the document's signing certificate.
@@ -272,28 +287,30 @@
       <li><strong>"Donate" link</strong>Opens the system browser to an
       external PayPal page, handled by PayPal, not by Unwrap.</li>
     </ul>
-    <p>If you don't use these features, the app makes no network
-    requests at all. The Quick Look extension (Finder preview) has no
-    network access.</p>
+    <div class="prose">
+      <p>If you don't use these features, the app makes no network
+      requests at all. The Quick Look extension (Finder preview) has no
+      network access.</p>
 
-    <h2>System permissions</h2>
-    <p>Unwrap runs in an <strong>App Sandbox</strong> and only accesses
-    files you explicitly open (double-click, drag & drop, "Open With", or
-    a file picker). It has no generic disk access and does not read other
-    files or folders.</p>
+      <h2>System permissions</h2>
+      <p>Unwrap runs in an <strong>App Sandbox</strong> and only accesses
+      files you explicitly open (double-click, drag & drop, "Open With", or
+      a file picker). It has no generic disk access and does not read other
+      files or folders.</p>
 
-    <h2>Children</h2>
-    <p>Unwrap is not directed at children and does not knowingly collect
-    data from children, as it does not collect data from any user.</p>
+      <h2>Children</h2>
+      <p>Unwrap is not directed at children and does not knowingly collect
+      data from children, as it does not collect data from any user.</p>
 
-    <h2>Changes to this policy</h2>
-    <p>Any updates will be posted on this same page, with the "last
-    updated" date at the top.</p>
+      <h2>Changes to this policy</h2>
+      <p>Any updates will be posted on this same page, with the "last
+      updated" date at the top.</p>
 
-    <h2>Contact</h2>
-    <p>Questions about this privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
+      <h2>Contact</h2>
+      <p>Questions about this privacy policy: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Privacy">francesco.tarini@gmail.com</a></p>
 
-    <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
+      <footer>Unwrap &middot; independent app, developed by Francesco Tarini.</footer>
+    </div>
   </div>
 </main>
 </div>

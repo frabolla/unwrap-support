@@ -47,9 +47,9 @@
     border-bottom: 1px solid var(--border);
   }
   main {
-    max-width: 900px;
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 48px 20px 80px;
+    padding: 48px clamp(20px, 5vw, 64px) 80px;
   }
   .hero main { padding-bottom: 40px; }
   .icon {
@@ -153,11 +153,15 @@
     margin-bottom: 6px;
     font-size: 15px;
   }
+  .prose {
+    max-width: 700px;
+  }
   ul {
     margin: 0;
     padding-left: 0;
     list-style: none;
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 12px;
   }
   li {
@@ -219,15 +223,17 @@
 
   <div data-lang="it">
     <img class="icon" src="icon.png" alt="Icona di Unwrap">
-    <h1>Unwrap — P7M e XML Viewer</h1>
-    <p class="subtitle">App per macOS che apre i file .p7m (buste firmate CAdES/PKCS#7).</p>
-    <p>Con un doppio clic mostra subito il contenuto: PDF, fattura elettronica
-    impaginata, XML con sintassi colorata, testo o immagine — senza il
-    solito giro verifica → estrazione → apertura con altri strumenti.
-    Tutto elaborato in locale sul Mac, nessun file lascia il dispositivo.
-    Si integra anche con il Finder: basta selezionare un <code>.p7m</code> e
-    premere la barra spaziatrice per vederne l'anteprima con Quick Look,
-    senza nemmeno aprire l'app.</p>
+    <div class="prose">
+      <h1>Unwrap — P7M e XML Viewer</h1>
+      <p class="subtitle">App per macOS che apre i file .p7m (buste firmate CAdES/PKCS#7).</p>
+      <p>Con un doppio clic mostra subito il contenuto: PDF, fattura elettronica
+      impaginata, XML con sintassi colorata, testo o immagine — senza il
+      solito giro verifica → estrazione → apertura con altri strumenti.
+      Tutto elaborato in locale sul Mac, nessun file lascia il dispositivo.
+      Si integra anche con il Finder: basta selezionare un <code>.p7m</code> e
+      premere la barra spaziatrice per vederne l'anteprima con Quick Look,
+      senza nemmeno aprire l'app.</p>
+    </div>
 
     <div class="gallery">
       <figure class="shot"><img src="screenshots/screenshot-1.png" alt="Unwrap mostra subito il PDF estratto da un file .p7m, con i dettagli della busta firmata nel pannello laterale"></figure>
@@ -236,9 +242,11 @@
       <figure class="shot"><img src="screenshots/screenshot-4.png" alt="Un altro PDF estratto da un file .p7m, con tema d'accento turchese in modalità scura"></figure>
     </div>
 
-    <div class="card">
-      <strong>Hai un problema o una domanda?</strong>
-      <p>Scrivimi direttamente, rispondo io: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Assistenza">francesco.tarini@gmail.com</a></p>
+    <div class="prose">
+      <div class="card">
+        <strong>Hai un problema o una domanda?</strong>
+        <p>Scrivimi direttamente, rispondo io: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Assistenza">francesco.tarini@gmail.com</a></p>
+      </div>
     </div>
 
     <h2>Domande frequenti</h2>
@@ -254,14 +262,16 @@
 
   <div data-lang="en">
     <img class="icon" src="icon.png" alt="Unwrap icon">
-    <h1>Unwrap — P7M and XML Viewer</h1>
-    <p class="subtitle">A macOS app that opens .p7m files (signed CAdES/PKCS#7 envelopes).</p>
-    <p>One double-click shows the content right away: PDF, a nicely formatted
-    e-invoice, syntax-highlighted XML, text or an image — instead of the
-    usual verify → extract → open routine with other tools. Everything is
-    processed locally on your Mac, no file ever leaves the device. It also
-    integrates with the Finder: select a <code>.p7m</code> and press the
-    spacebar for a Quick Look preview, without even opening the app.</p>
+    <div class="prose">
+      <h1>Unwrap — P7M and XML Viewer</h1>
+      <p class="subtitle">A macOS app that opens .p7m files (signed CAdES/PKCS#7 envelopes).</p>
+      <p>One double-click shows the content right away: PDF, a nicely formatted
+      e-invoice, syntax-highlighted XML, text or an image — instead of the
+      usual verify → extract → open routine with other tools. Everything is
+      processed locally on your Mac, no file ever leaves the device. It also
+      integrates with the Finder: select a <code>.p7m</code> and press the
+      spacebar for a Quick Look preview, without even opening the app.</p>
+    </div>
 
     <div class="gallery">
       <figure class="shot"><img src="screenshots/screenshot-1.png" alt="Unwrap instantly shows the PDF extracted from a .p7m file, with the signed envelope's details in the side panel"></figure>
@@ -270,9 +280,11 @@
       <figure class="shot"><img src="screenshots/screenshot-4.png" alt="Another PDF extracted from a .p7m file, with a teal accent theme in dark mode"></figure>
     </div>
 
-    <div class="card">
-      <strong>Got an issue or a question?</strong>
-      <p>Write to me directly, I answer personally: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Support">francesco.tarini@gmail.com</a></p>
+    <div class="prose">
+      <div class="card">
+        <strong>Got an issue or a question?</strong>
+        <p>Write to me directly, I answer personally: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Support">francesco.tarini@gmail.com</a></p>
+      </div>
     </div>
 
     <h2>FAQ</h2>
