@@ -107,6 +107,16 @@
   @media (min-width: 640px) {
     .shot { flex-basis: 320px; }
   }
+  @media (min-width: 860px) {
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow-x: visible;
+      margin: 36px 0;
+      padding: 0;
+    }
+    .shot { max-width: none; }
+  }
   .shot button {
     display: block;
     width: 100%;
