@@ -6,9 +6,22 @@
 <title>Privacy Policy — Unwrap</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
+<meta name="description" content="Informativa sulla privacy di Unwrap, l'app per macOS che apre i file .p7m e XML.">
+<link rel="canonical" href="https://unwrapapp.it/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Unwrap">
+<meta property="og:url" content="https://unwrapapp.it/privacy.html">
+<meta property="og:title" content="Privacy Policy — Unwrap">
+<meta property="og:description" content="Informativa sulla privacy di Unwrap, l'app per macOS che apre i file .p7m e XML.">
+<meta property="og:image" content="https://unwrapapp.it/icon.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
 <script>
   try {
-    var savedTheme = localStorage.getItem('unwrap-support-theme');
+    var savedTheme = localStorage.getItem('unwrap-theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
@@ -359,10 +372,10 @@
     document.body.classList.toggle('lang-en', lang === 'en');
     document.getElementById('btn-it').classList.toggle('active', lang === 'it');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    try { localStorage.setItem('unwrap-support-lang', lang); } catch (e) {}
+    try { localStorage.setItem('unwrap-lang', lang); } catch (e) {}
   }
   try {
-    var saved = localStorage.getItem('unwrap-support-lang');
+    var saved = localStorage.getItem('unwrap-lang');
     if (saved === 'en') setLang('en');
   } catch (e) {}
 
@@ -375,11 +388,11 @@
     document.getElementById('theme-auto').classList.toggle('active', !theme);
     document.getElementById('theme-light').classList.toggle('active', theme === 'light');
     document.getElementById('theme-dark').classList.toggle('active', theme === 'dark');
-    try { localStorage.setItem('unwrap-support-theme', theme || ''); } catch (e) {}
+    try { localStorage.setItem('unwrap-theme', theme || ''); } catch (e) {}
   }
   (function () {
     try {
-      var savedTheme = localStorage.getItem('unwrap-support-theme');
+      var savedTheme = localStorage.getItem('unwrap-theme');
       if (savedTheme === 'light' || savedTheme === 'dark') setTheme(savedTheme);
     } catch (e) {}
   })();
