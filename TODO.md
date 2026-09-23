@@ -1,25 +1,24 @@
 # TODO
 
 ## Download dell'app dal sito
-Decisione: **Opzione A — link diretto a GitHub Releases**.
-Repo dell'app: **frabolla/unwrap-macOS** (nessuna release pubblicata
-al 23/09/2026).
+Decisione: **Opzione A — link diretto a GitHub Releases**. ✅ Fatto.
+Repo dell'app: **frabolla/unwrap-macOS-release**. Release v1.0
+pubblicata il 23/09/2026, asset `Unwrap.dmg`.
 
-- [ ] Firmare l'app con certificato Developer ID e notarizzarla presso Apple
-      (necessario comunque, indipendentemente dal canale di distribuzione:
-      senza notarizzazione Gatekeeper blocca l'app al primo avvio).
-- [ ] Pubblicare il binario (.dmg o .zip) come asset di una GitHub Release
-      del repo `frabolla/unwrap-macOS`.
-- [ ] Non appena la release è pubblicata, sostituire in `index.html`
-      (IT ed EN) il link segnaposto `#download-placeholder` del pulsante
-      "Scarica per Mac" con:
-      `https://github.com/frabolla/unwrap-macOS/releases/latest/download/<NomeFile>.dmg`
-      (`<NomeFile>` = nome esatto dell'asset caricato nella release; il
-      link `latest` punta sempre automaticamente all'ultima versione,
-      senza doverlo aggiornare a ogni nuova release).
-- [ ] Sostituire anche il link "Note di rilascio" con
-      `https://github.com/frabolla/unwrap-macOS/releases`.
-- [ ] Riattivare i due `<a>` (rimuovere `onclick="return false;"`).
+- [x] Pubblicare il binario (.dmg) come asset di una GitHub Release del
+      repo `frabolla/unwrap-macOS-release` (release v1.0).
+- [x] Collegare in `index.html` (IT ed EN) il pulsante "Scarica per
+      Mac" a
+      `https://github.com/frabolla/unwrap-macOS-release/releases/latest/download/Unwrap.dmg`
+      (il link `latest` punta sempre automaticamente all'ultima
+      versione, senza doverlo aggiornare a ogni nuova release — **a
+      patto che l'asset si chiami sempre `Unwrap.dmg` in ogni
+      release futura**, altrimenti il link non troverà il file).
+- [x] Collegare il link "Note di rilascio" a
+      `https://github.com/frabolla/unwrap-macOS-release/releases`.
+- [ ] Confermare che l'app in questa release sia firmata con
+      certificato Developer ID e notarizzata presso Apple (necessario
+      per non essere bloccata da Gatekeeper al primo avvio).
 
 ## Aggiornamenti automatici (Sparkle)
 - [ ] Integrare [Sparkle](https://sparkle-project.org) nell'app per
