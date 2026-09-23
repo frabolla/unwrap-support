@@ -16,9 +16,11 @@ pubblicata il 23/09/2026, asset `Unwrap.dmg`.
       release futura**, altrimenti il link non troverà il file).
 - [x] Collegare il link "Note di rilascio" a
       `https://github.com/frabolla/unwrap-macOS-release/releases`.
-- [ ] Confermare che l'app in questa release sia firmata con
-      certificato Developer ID e notarizzata presso Apple (necessario
-      per non essere bloccata da Gatekeeper al primo avvio).
+- [x] Confermato: `Unwrap.dmg` della release v1.0 è firmato con
+      Developer ID ("Francesco Tarini", team 7SRQ79789G) e notarizzato
+      da Apple — verificato il 23/09/2026 con
+      `spctl -a -vv -t install Unwrap.dmg` → `accepted, source=Notarized
+      Developer ID`.
 
 ## Aggiornamenti automatici (Sparkle)
 - [ ] Integrare [Sparkle](https://sparkle-project.org) nell'app per
