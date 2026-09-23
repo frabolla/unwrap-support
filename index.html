@@ -191,19 +191,25 @@
     font-size: 20px;
     max-width: 34em;
   }
-  .mas-badge {
-    display: inline-block;
-    margin: 4px 0 28px;
-    line-height: 0;
-    border-radius: 10px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  .donate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 11px 22px;
+    border-radius: 999px;
     box-shadow: var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .mas-badge:hover {
+  .donate-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18), 0 10px 28px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
   }
-  .mas-badge img { display: block; height: 46px; width: auto; }
   h2 {
     font-size: 20px;
     letter-spacing: -0.01em;
@@ -339,9 +345,6 @@
     <div class="prose">
       <h1>Unwrap — P7M e XML Viewer</h1>
       <p class="subtitle"><strong>App per macOS che apre <em>velocemente</em> i file .p7m.</strong><br>Apri con un doppio click, visualizza l'anteprima con spazio</p>
-      <a class="mas-badge" href="#" onclick="return false;" title="Link disponibile a breve">
-        <img src="badges/mac-app-store-badge-it.svg" alt="Disponibile su Mac App Store">
-      </a>
       <p>Con un doppio clic mostra subito il contenuto: PDF, fattura elettronica
       impaginata, XML con sintassi colorata, testo o immagine — senza il
       solito giro verifica → estrazione → apertura con altri strumenti.
@@ -380,6 +383,15 @@
       </div>
     </div>
 
+    <h2>Sostieni lo sviluppo</h2>
+    <div class="prose">
+      <div class="card">
+        <strong>Ti è utile? Offrimi un caffè ☕</strong>
+        <p>Unwrap è gratuito e sviluppato nel tempo libero. Se ti fa risparmiare tempo, una donazione libera tramite PayPal aiuta a mantenerlo aggiornato — nessun obbligo, nessuna funzionalità sbloccata.</p>
+        <a class="donate-btn" href="https://www.paypal.com/paypalme/ftarini" target="_blank" rel="noopener">Dona con PayPal</a>
+      </div>
+    </div>
+
     <footer>Unwrap &middot; app indipendente, sviluppata da <a href="https://tarini.eu/">Francesco Tarini</a> 🇮🇹 &middot; <a href="privacy.html">Privacy Policy</a></footer>
   </div>
 
@@ -388,9 +400,6 @@
     <div class="prose">
       <h1>Unwrap — P7M and XML Viewer</h1>
       <p class="subtitle"><strong>A macOS app that opens .p7m files <em>quickly</em>.</strong><br>Open with a double-click, preview with the spacebar</p>
-      <a class="mas-badge" href="#" onclick="return false;" title="Link coming soon">
-        <img src="badges/mac-app-store-badge-en.svg" alt="Available on the Mac App Store">
-      </a>
       <p>One double-click shows the content right away: PDF, a nicely formatted
       e-invoice, syntax-highlighted XML, text or an image — instead of the
       usual verify → extract → open routine with other tools. Everything is
@@ -425,6 +434,15 @@
       <div class="card">
         <strong>Got an issue or a question?</strong>
         <p>Write to me directly, I answer personally: <a href="mailto:francesco.tarini@gmail.com?subject=Unwrap%20-%20Support">francesco.tarini@gmail.com</a></p>
+      </div>
+    </div>
+
+    <h2>Support development</h2>
+    <div class="prose">
+      <div class="card">
+        <strong>Finding it useful? Buy me a coffee ☕</strong>
+        <p>Unwrap is free and built in my spare time. If it saves you time, a free donation via PayPal helps keep it up to date — no obligation, no feature is unlocked.</p>
+        <a class="donate-btn" href="https://www.paypal.com/paypalme/ftarini" target="_blank" rel="noopener">Donate with PayPal</a>
       </div>
     </div>
 
