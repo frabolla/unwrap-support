@@ -2,16 +2,24 @@
 
 ## Download dell'app dal sito
 Decisione: **Opzione A — link diretto a GitHub Releases**.
+Repo dell'app: **frabolla/unwrap-macOS** (nessuna release pubblicata
+al 23/09/2026).
 
 - [ ] Firmare l'app con certificato Developer ID e notarizzarla presso Apple
       (necessario comunque, indipendentemente dal canale di distribuzione:
       senza notarizzazione Gatekeeper blocca l'app al primo avvio).
 - [ ] Pubblicare il binario (.dmg o .zip) come asset di una GitHub Release
-      del repo dell'app.
-- [ ] Aggiungere sul sito un pulsante "Scarica" che punta a
-      `github.com/<owner>/<repo-app>/releases/latest/download/Unwrap.dmg`
-      (il link `latest` punta sempre automaticamente all'ultima versione,
-      senza doverlo aggiornare a ogni release).
+      del repo `frabolla/unwrap-macOS`.
+- [ ] Non appena la release è pubblicata, sostituire in `index.html`
+      (IT ed EN) il link segnaposto `#download-placeholder` del pulsante
+      "Scarica per Mac" con:
+      `https://github.com/frabolla/unwrap-macOS/releases/latest/download/<NomeFile>.dmg`
+      (`<NomeFile>` = nome esatto dell'asset caricato nella release; il
+      link `latest` punta sempre automaticamente all'ultima versione,
+      senza doverlo aggiornare a ogni nuova release).
+- [ ] Sostituire anche il link "Note di rilascio" con
+      `https://github.com/frabolla/unwrap-macOS/releases`.
+- [ ] Riattivare i due `<a>` (rimuovere `onclick="return false;"`).
 
 ## Aggiornamenti automatici (Sparkle)
 - [ ] Integrare [Sparkle](https://sparkle-project.org) nell'app per
