@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Unwrap</title>
+    <link>https://unwrapapp.it</link>
+    <description>Aggiornamenti di Unwrap (versione per il sito)</description>
+    <language>it</language>
+    <item>
+      <title>Unwrap 1.1</title>
+      <pubDate>Thu, 24 Sep 2026 17:07:38 -0000</pubDate>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <link>https://github.com/frabolla/unwrap-macOS-release/releases/tag/v1.1</link>
+      <enclosure url="https://github.com/frabolla/unwrap-macOS-release/releases/download/v1.1/Unwrap.dmg" sparkle:edSignature="REfJECOY1dj3FvsScgNXyZuAtAArSvF9QAeQXyDxh7SevYhJqXBewMsR9MjjUUM2V0unYEN1WHsKz/Xt7d7OCw==" length="3678823" type="application/octet-stream"/>
+    </item>
+  </channel>
+</rss>
